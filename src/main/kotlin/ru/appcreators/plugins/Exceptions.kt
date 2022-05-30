@@ -38,4 +38,8 @@ object RegistrationTokenException {
 object CatalogException {
     class NotFound(id: Int): Throwable("Catalog ($id) not found")
     class NotOwner(id: Int): Throwable("Catalog ($id) dos not belong to you")
+
+    class SecretShareNotFound(value: String): Throwable("Catalog shareSecret ($value) not found")
+
+    class ShareAlreadyGranted(shareSecret: String, userId: Int): Throwable("Catalog shareSecret ($shareSecret) already granted for userId ($userId)")
 }

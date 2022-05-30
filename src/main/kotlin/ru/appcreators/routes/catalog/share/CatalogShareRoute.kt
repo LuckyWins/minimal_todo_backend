@@ -30,9 +30,7 @@ fun Route.shareCatalogRoute(
         if (catalogSingle.ownerId != userId) throw CatalogException.NotOwner(id)
 
         // check secret
-        val currentSecret = catalogShareSecretRepository.getSecret(
-            catalogId = id
-        )
+        val currentSecret = catalogShareSecretRepository.getSecretByCatalogId(id)
 
         val shareSecret = if (currentSecret != null) {
             // return current

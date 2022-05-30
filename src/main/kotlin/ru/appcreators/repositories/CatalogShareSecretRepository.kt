@@ -1,5 +1,6 @@
 package ru.appcreators.repositories
 
+import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.select
@@ -10,8 +11,27 @@ object CatalogShareSecrets : Table("catalog_share_secret") {
     val catalogId = integer("catalog_id").references(CatalogTable.id)
 }
 
+data class CatalogShareSecret(
+    val shareSecret: String,
+    val catalogId: Int
+) {
+    constructor(resultRow: ResultRow): this(
+        shareSecret = resultRow[CatalogShareSecrets.shareSecret],
+        catalogId = resultRow[CatalogShareSecrets.catalogId],
+    )
+}
+
 class CatalogShareSecretRepository {
-    fun getSecret(
+    fun getSecretByValue(
+        shareSecret: String,
+    ): CatalogShareSecret? = transaction {
+        CatalogShareSecrets
+            .select {
+                CatalogShareSecrets.shareSecret eq shareSecret
+            }
+            .singleOrNull()?.let { CatalogShareSecret(it) }
+    }
+    fun getSecretByCatalogId(
         catalogId: Int,
     ): String? = transaction {
         CatalogShareSecrets

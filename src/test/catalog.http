@@ -16,5 +16,5 @@ GET http://localhost:8090/catalog/{{catalogItemId}}/share
 Authorization: Bearer {{accessToken}}
 
 ### add item from shareSecret
-GET http://localhost:8090/catalog/shareSecret/{{shareSecret}}
+GET http://localhost:8090/catalog/addSecret/{{shareSecret}}
 Authorization: Bearer {{accessToken}}

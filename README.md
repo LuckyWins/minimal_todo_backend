@@ -142,25 +142,27 @@ response:
 }
 ```
 
-#### GET /catalog/shareSecret/{value}
+#### GET /catalog/addSecret/{shareSecret}
 Authorization: Bearer {accessToken}
 
 response:
 ```json
 {
-  "id": 1,
-  "own": false,
-  "ownerId": 12345678,
-  "title": "some todo title",
-  "items": [
-    {
-      "done": true,
-      "value": "do cook"
-    },
-    {
-      "done": false,
-      "value": "do clean"
-    }
-  ]
+  "item": {
+    "id": 1,
+    "own": false,
+    "ownerId": 12345678,
+    "title": "some todo title",
+    "items": [
+      {
+        "done": true,
+        "value": "do cook"
+      },
+      {
+        "done": false,
+        "value": "do clean"
+      }
+    ]
+  }
 }
 ```

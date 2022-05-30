@@ -6,8 +6,10 @@ import io.ktor.server.routing.*
 import kotlinx.serialization.Serializable
 import ru.appcreators.repositories.Catalog
 import ru.appcreators.repositories.CatalogRepository
+import ru.appcreators.repositories.CatalogShareRepository
 import ru.appcreators.repositories.CatalogShareSecretRepository
 import ru.appcreators.routes.catalog.add.addCatalogRoute
+import ru.appcreators.routes.catalog.add_secret.addCatalogSecretRoute
 import ru.appcreators.routes.catalog.get.getCatalogRoute
 import ru.appcreators.routes.catalog.share.shareCatalogRoute
 
@@ -31,7 +33,8 @@ data class ResponseCatalog(
 
 fun Application.catalogRoutes(
     catalogRepository: CatalogRepository,
-    catalogShareSecretRepository: CatalogShareSecretRepository
+    catalogShareSecretRepository: CatalogShareSecretRepository,
+    catalogShareRepository: CatalogShareRepository
 ) {
     routing {
         authenticate("auth-jwt") {
@@ -44,6 +47,11 @@ fun Application.catalogRoutes(
                         catalogShareSecretRepository = catalogShareSecretRepository
                     )
                 }
+                addCatalogSecretRoute(
+                    catalogShareSecretRepository = catalogShareSecretRepository,
+                    catalogShareRepository = catalogShareRepository,
+                    catalogRepository = catalogRepository
+                )
             }
         }
     }

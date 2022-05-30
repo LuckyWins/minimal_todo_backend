@@ -25,6 +25,7 @@ fun Application.module() {
     val registrationConfirmRepository = RegistrationConfirmRepository()
     val catalogRepository = CatalogRepository()
     val catalogShareSecretRepository = CatalogShareSecretRepository()
+    val catalogShareRepository = CatalogShareRepository()
 
     val mailService = MailService(
         username = AppConfig.mailAuthUsername,
@@ -68,6 +69,7 @@ fun Application.module() {
     )
     catalogRoutes(
         catalogRepository = catalogRepository,
-        catalogShareSecretRepository = catalogShareSecretRepository
+        catalogShareSecretRepository = catalogShareSecretRepository,
+        catalogShareRepository = catalogShareRepository
     )
 }
