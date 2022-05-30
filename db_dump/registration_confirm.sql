@@ -6,3 +6,4 @@ create table minimaltodo.registration_confirm
     constraint registration_confirm_users_id_fk
         foreign key (user_id) references minimaltodo.users (id)
 );
+

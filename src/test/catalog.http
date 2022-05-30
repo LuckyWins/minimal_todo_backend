@@ -12,19 +12,9 @@ Content-Type: application/json
 }
 
 ### share item
-POST http://localhost:8090/catalog/{{catalogItemId}}/share
+GET http://localhost:8090/catalog/{{catalogItemId}}/share
 Authorization: Bearer {{accessToken}}
-Content-Type: application/json
-
-{
-  "title": "title"
-}
 
 ### add item from shareSecret
-POST http://localhost:8090/catalog/shareSecret/{{shareSecret}}
+GET http://localhost:8090/catalog/shareSecret/{{shareSecret}}
 Authorization: Bearer {{accessToken}}
-Content-Type: application/json
-
-{
-  "title": "title"
-}

@@ -6,3 +6,4 @@ create table minimaltodo.refresh_tokens
     constraint refresh_tokens_users_id_fk
         foreign key (user_id) references minimaltodo.users (id)
 );
+

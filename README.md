@@ -102,8 +102,14 @@ response:
     "ownerId": 12345678,
     "title": "some todo title",
     "items": [
-      "do cook",
-      "do clean"
+      {
+        "done": true,
+        "value": "do cook"
+      },
+      {
+        "done": false,
+        "value": "do clean"
+      }
     ]
   }
 ]
@@ -147,8 +153,14 @@ response:
   "ownerId": 12345678,
   "title": "some todo title",
   "items": [
-    "do cook",
-    "do clean"
+    {
+      "done": true,
+      "value": "do cook"
+    },
+    {
+      "done": false,
+      "value": "do clean"
+    }
   ]
 }
 ```

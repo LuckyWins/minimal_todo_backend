@@ -26,20 +26,20 @@ object AppConfig {
     // registration
     /** In days */
     val registrationConfirmTokenLifetime: Duration
-        get() = Duration.ofDays(config.property("vsco.registration.confirm.lifetime").getString().toLong())
+        get() = Duration.ofDays(config.property("todo.registration.confirm.lifetime").getString().toLong())
     val registrationConfirmUrl: String
-        get() = config.property("vsco.registration.confirm.url").getString()
+        get() = config.property("todo.registration.confirm.url").getString()
     // mail auth
     val mailAuthUsername: String
-        get() = config.property("vsco.mail.auth.username").getString()
+        get() = config.property("todo.mail.auth.username").getString()
     val mailAuthPassword: String
-        get() = config.property("vsco.mail.auth.password").getString()
+        get() = config.property("todo.mail.auth.password").getString()
     // smtp
     val mailSmtpHost: String
-        get() = config.property("vsco.mail.smtp.host").getString()
+        get() = config.property("todo.mail.smtp.host").getString()
     val mailSmtpPort: String
-        get() = config.property("vsco.mail.smtp.port").getString()
+        get() = config.property("todo.mail.smtp.port").getString()
     val mailSmtpStarttls: String
-        get() = config.property("vsco.mail.smtp.starttls").getString()
+        get() = config.property("todo.mail.smtp.starttls").getString()
     //
 }
