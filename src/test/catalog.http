@@ -1,0 +1,30 @@
+### get catalog
+GET http://localhost:8090/catalog?own=true
+Authorization: Bearer {{accessToken}}
+
+### add item
+POST http://localhost:8090/catalog/add
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+  "title": "title"
+}
+
+### share item
+POST http://localhost:8090/catalog/{{catalogItemId}}/share
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+  "title": "title"
+}
+
+### add item from shareSecret
+POST http://localhost:8090/catalog/shareSecret/{{shareSecret}}
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+  "title": "title"
+}

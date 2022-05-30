@@ -1,0 +1,38 @@
+### login
+POST http://localhost:8090/user/login
+Content-Type: application/json
+
+{
+  "username": "andreu",
+  "password": "123456"
+}
+
+> {%
+client.global.set("accessToken", response.body.accessToken);
+client.global.set("refreshToken", response.body.refreshToken);
+%}
+
+### test with jwt
+GET http://localhost:8090/hello
+Authorization: Bearer {{accessToken}}
+
+### refresh token
+GET http://localhost:8090/user/refresh/{{refreshToken}}
+
+> {%
+client.global.set("accessToken", response.body.accessToken);
+client.global.set("refreshToken", response.body.refreshToken);
+%}
+
+### registration
+POST http://localhost:8090/user/registration
+Content-Type: application/json
+
+{
+  "username": "andreu1",
+  "email": "andreu21@protonmail.com",
+  "password": "123456"
+}
+
+### registration confirm
+GET http://localhost:8090/user/registration/confirm/{{confirmToken}}
