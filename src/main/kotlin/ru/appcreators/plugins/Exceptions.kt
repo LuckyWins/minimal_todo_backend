@@ -34,3 +34,8 @@ object UserException {
 object RegistrationTokenException {
     class NotFound(token: String): Throwable("Token ($token) not found")
 }
+
+object CatalogException {
+    class NotFound(id: Int): Throwable("Catalog ($id) not found")
+    class NotOwner(id: Int): Throwable("Catalog ($id) dos not belong to you")
+}
