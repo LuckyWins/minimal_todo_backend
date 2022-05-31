@@ -45,6 +45,16 @@ class ItemsRepository {
             .singleOrNull()?.let { Item(it, it[CatalogTable.ownerId]) }
     }
 
+    fun getItems(catalogId: Int): List<Item> = transaction {
+        val query = ItemsTable
+            .select {
+                ItemsTable.catalogId eq catalogId
+            }
+        query.map {
+            Item(it)
+        }
+    }
+
     /**
      * return [Int] - inserted item id
      */

@@ -72,7 +72,8 @@ fun Application.module() {
     catalogRoutes(
         catalogRepository = catalogRepository,
         catalogShareSecretRepository = catalogShareSecretRepository,
-        catalogShareRepository = catalogShareRepository
+        catalogShareRepository = catalogShareRepository,
+        itemsRepository = itemsRepository
     )
     itemsRoutes(
         itemsRepository = itemsRepository,

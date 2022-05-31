@@ -10,12 +10,14 @@ import ru.appcreators.plugins.CatalogException
 import ru.appcreators.repositories.CatalogRepository
 import ru.appcreators.repositories.CatalogShareRepository
 import ru.appcreators.repositories.CatalogShareSecretRepository
+import ru.appcreators.repositories.ItemsRepository
 import ru.appcreators.routes.catalog.ResponseCatalog
 
 fun Route.addCatalogSecretRoute(
     catalogShareSecretRepository: CatalogShareSecretRepository,
     catalogShareRepository: CatalogShareRepository,
     catalogRepository: CatalogRepository,
+    itemsRepository: ItemsRepository,
 ) {
     get("/addSecret/{shareSecret}") {
         val shareSecret = call.request.queryParameters["shareSecret"]
@@ -50,7 +52,8 @@ fun Route.addCatalogSecretRoute(
         call.respond(AddCatalogSecretResponse(
             item = ResponseCatalog(
                 catalog = catalogSingle,
-                userId = userId
+                userId = userId,
+                items = itemsRepository.getItems(catalogSingle.id)
             )
         ))
 
