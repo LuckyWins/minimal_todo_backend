@@ -29,12 +29,23 @@ class CatalogRepository {
         // TODO: get shared items
         own: Boolean,
     ): List<Catalog> = transaction {
-        val query = CatalogTable
-            .select {
-                CatalogTable.ownerId eq userId
+        if (own) {
+            val query = CatalogTable
+                .select {
+                    CatalogTable.ownerId eq userId
+                }
+            query.map {
+                Catalog(it)
             }
-        query.map {
-            Catalog(it)
+        } else {
+            val query = CatalogTable
+                .innerJoin(CatalogShareTable)
+                .select {
+                    CatalogTable.id.eq(CatalogShareTable.catalogId) and (CatalogShareTable.userId eq userId)
+                }
+            query.map {
+                Catalog(it)
+            }
         }
     }
 

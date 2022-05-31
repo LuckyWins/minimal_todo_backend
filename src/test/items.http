@@ -1,0 +1,24 @@
+### add item
+POST http://localhost:8090/items/add
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+  "catalogId": 1,
+  "done": true,
+  "value": "do do do clean"
+}
+
+### delete item
+DELETE http://localhost:8090/items/{{itemId}}
+Authorization: Bearer {{accessToken}}
+
+### edit item
+POST http://localhost:8090/items/{{itemId}}/edit
+Authorization: Bearer {{accessToken}}
+Content-Type: application/json
+
+{
+  "done": false,
+  "value": "updated value"
+}

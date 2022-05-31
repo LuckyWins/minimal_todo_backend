@@ -6,6 +6,7 @@ import ru.appcreators.data.remote.DatabaseFactory
 import ru.appcreators.plugins.*
 import ru.appcreators.repositories.*
 import ru.appcreators.routes.catalog.catalogRoutes
+import ru.appcreators.routes.items.itemsRoutes
 import ru.appcreators.routes.user.userRoutes
 
 fun main(args: Array<String>): Unit =
@@ -26,6 +27,7 @@ fun Application.module() {
     val catalogRepository = CatalogRepository()
     val catalogShareSecretRepository = CatalogShareSecretRepository()
     val catalogShareRepository = CatalogShareRepository()
+    val itemsRepository = ItemsRepository()
 
     val mailService = MailService(
         username = AppConfig.mailAuthUsername,
@@ -71,5 +73,9 @@ fun Application.module() {
         catalogRepository = catalogRepository,
         catalogShareSecretRepository = catalogShareSecretRepository,
         catalogShareRepository = catalogShareRepository
+    )
+    itemsRoutes(
+        itemsRepository = itemsRepository,
+        catalogRepository = catalogRepository
     )
 }

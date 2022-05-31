@@ -43,3 +43,11 @@ object CatalogException {
 
     class ShareAlreadyGranted(shareSecret: String, userId: Int): Throwable("Catalog shareSecret ($shareSecret) already granted for userId ($userId)")
 }
+
+object ItemException {
+    class NotFound(id: Int): Throwable("Item ($id) not found")
+    class NotOwner(id: Int): Throwable("Item ($id) dos not belong to you")
+    class UnableToDelete(id: Int): Throwable("Item ($id): unable to delete")
+    class NothingToUpdate(id: Int): Throwable("Item ($id): nothing to update, all request fields are empty")
+    class UnableToUpdate(id: Int): Throwable("Item ($id): unable to update")
+}

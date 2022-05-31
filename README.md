@@ -35,6 +35,9 @@ todo {
 ```
 
 Endpoints:
+
+## User
+
 #### POST /user/login
 
 request:
@@ -87,6 +90,9 @@ response:
   "refreshTokenExpiresAt": 1656006801089
 }
 ```
+
+## Catalog
+
 #### GET /catalog
 Authorization: Bearer {accessToken}
 
@@ -103,10 +109,12 @@ response:
     "title": "some todo title",
     "items": [
       {
+        "id": 1,
         "done": true,
         "value": "do cook"
       },
       {
+        "id": 2,
         "done": false,
         "value": "do clean"
       }
@@ -155,10 +163,12 @@ response:
     "title": "some todo title",
     "items": [
       {
+        "id": 1,
         "done": true,
         "value": "do cook"
       },
       {
+        "id": 2,
         "done": false,
         "value": "do clean"
       }
@@ -166,3 +176,42 @@ response:
   }
 }
 ```
+
+## Items
+
+#### POST /items/add
+Authorization: Bearer {accessToken}
+
+request:
+```json
+{
+  "catalogId": 1,
+  "done": true,
+  "value": "do clean"
+}
+```
+
+response:
+```json
+{
+  "id": 1
+}
+```
+
+#### DELETE /items/{id}
+Authorization: Bearer {accessToken}
+
+response: 200 OK or error
+
+#### POST /items/{id}/edit
+Authorization: Bearer {accessToken}
+
+request:
+```json
+{
+  "done": true,
+  "value": "do clean"
+}
+```
+
+response: 200 OK or error
