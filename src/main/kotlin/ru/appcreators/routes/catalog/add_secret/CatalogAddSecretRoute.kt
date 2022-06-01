@@ -20,7 +20,7 @@ fun Route.addCatalogSecretRoute(
     itemsRepository: ItemsRepository,
 ) {
     get("/addSecret/{shareSecret}") {
-        val shareSecret = call.request.queryParameters["shareSecret"]
+        val shareSecret = call.parameters["shareSecret"]
             ?: throw MissingRequestParameterException("shareSecret")
 
         // jwt
