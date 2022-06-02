@@ -136,7 +136,22 @@ request:
 response:
 ```json
 {
-  "id": 1
+  "id": 1,
+  "own": true,
+  "ownerId": 12345678,
+  "title": "title",
+  "items": [
+    {
+      "id": 1,
+      "done": true,
+      "value": "do cook"
+    },
+    {
+      "id": 2,
+      "done": false,
+      "value": "do clean"
+    }
+  ]
 }
 ```
 
@@ -156,24 +171,22 @@ Authorization: Bearer {accessToken}
 response:
 ```json
 {
-  "item": {
-    "id": 1,
-    "own": false,
-    "ownerId": 12345678,
-    "title": "some todo title",
-    "items": [
-      {
-        "id": 1,
-        "done": true,
-        "value": "do cook"
-      },
-      {
-        "id": 2,
-        "done": false,
-        "value": "do clean"
-      }
-    ]
-  }
+  "id": 1,
+  "own": false,
+  "ownerId": 12345678,
+  "title": "some todo title",
+  "items": [
+    {
+      "id": 1,
+      "done": true,
+      "value": "do cook"
+    },
+    {
+      "id": 2,
+      "done": false,
+      "value": "do clean"
+    }
+  ]
 }
 ```
 
@@ -194,7 +207,9 @@ request:
 response:
 ```json
 {
-  "id": 1
+  "id": 1,
+  "done": true,
+  "value": "do clean"
 }
 ```
 
@@ -214,4 +229,11 @@ request:
 }
 ```
 
-response: 200 OK or error
+response:
+```json
+{
+  "id": 1,
+  "done": true,
+  "value": "do clean"
+}
+```

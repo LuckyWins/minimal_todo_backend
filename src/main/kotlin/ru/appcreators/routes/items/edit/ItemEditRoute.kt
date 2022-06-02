@@ -10,6 +10,7 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import ru.appcreators.plugins.ItemException
 import ru.appcreators.repositories.ItemsRepository
+import ru.appcreators.routes.catalog.ResponseCatalogItem
 
 fun Route.editItemRoute(
     itemsRepository: ItemsRepository,
@@ -40,6 +41,8 @@ fun Route.editItemRoute(
         )
         if (!updateResult) throw ItemException.UnableToUpdate(id)
 
-        call.respond(HttpStatusCode.OK)
+        val updatedItem = itemsRepository.getItem(id)!!
+
+        call.respond(ResponseCatalogItem(updatedItem))
     }
 }

@@ -8,8 +8,3 @@ data class ItemAddRequest(
     val done: Boolean? = null,
     val value: String? = null,
 )
-
-@Serializable
-data class ItemAddResponse(
-    val id: Int,
-)

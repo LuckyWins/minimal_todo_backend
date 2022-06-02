@@ -9,6 +9,7 @@ import io.ktor.server.routing.*
 import ru.appcreators.plugins.CatalogException
 import ru.appcreators.repositories.CatalogRepository
 import ru.appcreators.repositories.ItemsRepository
+import ru.appcreators.routes.catalog.ResponseCatalogItem
 
 fun Route.addItemRoute(
     itemsRepository: ItemsRepository,
@@ -34,10 +35,8 @@ fun Route.addItemRoute(
             value = request.value
         )
 
-        call.respond(
-            ItemAddResponse(
-            id = addedItemId
-        )
-        )
+        val addedItem = itemsRepository.getItem(addedItemId)!!
+
+        call.respond(ResponseCatalogItem(addedItem))
     }
 }

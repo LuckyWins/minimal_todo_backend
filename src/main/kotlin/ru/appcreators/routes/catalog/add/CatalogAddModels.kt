@@ -6,8 +6,3 @@ import kotlinx.serialization.Serializable
 data class AddCatalogRequest(
     val title: String,
 )
-
-@Serializable
-data class AddCatalogResponse(
-    val id: Int,
-)

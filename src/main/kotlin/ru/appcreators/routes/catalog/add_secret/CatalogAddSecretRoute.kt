@@ -49,12 +49,10 @@ fun Route.addCatalogSecretRoute(
 
         val catalogSingle = catalogRepository.getCatalogSingle(shareSecretItem.catalogId)!!
 
-        call.respond(AddCatalogSecretResponse(
-            item = ResponseCatalog(
-                catalog = catalogSingle,
-                userId = userId,
-                items = itemsRepository.getItems(catalogSingle.id)
-            )
+        call.respond(ResponseCatalog(
+            catalog = catalogSingle,
+            userId = userId,
+            items = itemsRepository.getItems(catalogSingle.id)
         ))
 
     }

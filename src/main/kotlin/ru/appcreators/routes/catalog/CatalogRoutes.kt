@@ -40,7 +40,15 @@ data class ResponseCatalogItem(
     val id: Int,
     val done: Boolean,
     val value: String?,
-)
+) {
+    constructor(
+        item: Item,
+    ) : this(
+        id = item.id,
+        done = item.done,
+        value = item.value
+    )
+}
 
 fun Application.catalogRoutes(
     catalogRepository: CatalogRepository,
@@ -52,7 +60,7 @@ fun Application.catalogRoutes(
         authenticate("auth-jwt") {
             route("/catalog") {
                 getCatalogRoute(catalogRepository, itemsRepository)
-                addCatalogRoute(catalogRepository)
+                addCatalogRoute(catalogRepository, itemsRepository)
                 route("/{id}") {
                     shareCatalogRoute(
                         catalogRepository = catalogRepository,

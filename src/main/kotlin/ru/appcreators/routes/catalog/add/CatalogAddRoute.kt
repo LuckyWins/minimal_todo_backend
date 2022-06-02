@@ -7,9 +7,12 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import ru.appcreators.repositories.CatalogRepository
+import ru.appcreators.repositories.ItemsRepository
+import ru.appcreators.routes.catalog.ResponseCatalog
 
 fun Route.addCatalogRoute(
     catalogRepository: CatalogRepository,
+    itemsRepository: ItemsRepository,
 ) {
     post("/add") {
         val request = call.receive<AddCatalogRequest>()
@@ -24,8 +27,12 @@ fun Route.addCatalogRoute(
             title = request.title
         )
 
-        call.respond(AddCatalogResponse(
-            id = addedCatalogId
+        val addedCatalog = catalogRepository.getCatalogSingle(addedCatalogId)!!
+
+        call.respond(ResponseCatalog(
+            catalog = addedCatalog,
+            userId = userId,
+            items = itemsRepository.getItems(addedCatalogId)
         ))
     }
 }
